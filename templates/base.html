@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        {% block title %}
+            测试平台
+        {% endblock title %}
+    </title>
+
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/js/bootstrap-select.js">
+    <link rel="stylesheet" href="/static/css/dsb.css">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index:index' %}">测试平台</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li ><a href="{% url 'person:index' %}">人员管理</a></li>
+                            <li ><a href="{% url 'project:index' %}">项目管理</a></li>
+{#                            <li class="active"><a href="#contact">Contact</a></li>#}
+                        </ul>
+        </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h1>欢迎使用测试平台</h1>
+                <br>
+                <p>
+                    <a href="http://10.102.111.117:9000" target="_blank" class="btn btn-success">dock入口</a>
+                    <a href="http://10.102.111.150" target="_blank" class="btn btn-warning">jenkins入口</a>
+                    <a href="http://zentao.foucus.top:10080/" target="_blank" class="btn btn-info">禅道入口</a>
+                    <a href="http://gogs.foucus.top:10080/" target="_blank" class="btn btn-danger">git入口</a>
+                </p>
+                <p></p>
+
+            </div>
+            {#          <div class="row">#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {#              <h2>项目1</h2>#}
+            {#              <p>项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字项目1说明文字 </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">项目1按钮</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {##}
+            {#                <h2>Heading</h2>#}
+            {#              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {#              <h2>Heading</h2>#}
+            {#              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {#              <h2>Heading</h2>#}
+            {#              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {#              <h2>Heading</h2>#}
+            {#              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#            <div class="col-xs-6 col-lg-4">#}
+            {#              <h2>Heading</h2>#}
+            {#              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+            {#              <p><a class="btn btn-default" href="#" role="button">View details »</a></p>#}
+            {#            </div><!--/.col-xs-6.col-lg-4-->#}
+            {#          </div><!--/row-->#}
+
+
+            {% block body %}
+                {#                <a href="http://10.102.111.117:9000">dock入口</a><br>#}
+                {#                <a href="http://10.102.111.150">jenkins入口</a><br>#}
+            {% endblock body %}
+
+
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+                {#                <a href="#" class="list-group-item active">Link</a>#}
+                {#                有选中效果#}
+                <a href="{% url 'index:index' %}" class="list-group-item">首页</a>
+                <a href="/lm/" class="list-group-item">许可证管理</a>
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+{#                <a href="#" class="list-group-item">Link</a>#}
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+
+{#    <hr>#}
+
+{#    <div style="position:fixed; bottom:0; width: auto">#}
+{##}
+{#        <footer>#}
+{#        <p>庄庆尧 qyzhg@163.com </p>#}
+{#    </footer>#}
+{#    </div>#}
+
+
+</div><!--/.container-->
+
+
+</body>
+</html>

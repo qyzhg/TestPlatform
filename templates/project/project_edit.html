@@ -1,0 +1,34 @@
+{% extends 'project/project_base.html' %}
+
+{% block tabletitle %}
+    编辑项目
+{% endblock %}
+
+{% block table_project %}
+    <form method="post">
+        <div class="form-group">
+            <label for="name">项目名称</label>
+            <input type="name" class="form-control" id="name" name="name" value="{{ project.project_name}}">
+        </div>
+        <div class="form-group">
+            <label for="poject">项目负责人</label>
+
+            <p>
+                {% for person in all_person %}
+                    <label class="form-group"><input name="persons" type="checkbox" value="{{ person.pk }}"
+                            {% if person in project_person %} checked="checked"{% endif %}
+                    /> {{ person.person_name }} </label>&nbsp;
+                {% endfor %}
+            </p>
+
+
+        </div>
+
+        <input type="text" value="{{ project_pk }}" readonly style="display: none;" name="project_pk">
+        <button type="submit" class="btn btn-info">提交</button>
+    </form>
+
+
+
+
+{% endblock %}

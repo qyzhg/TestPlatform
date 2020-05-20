@@ -1,0 +1,49 @@
+{% extends 'person/person_base.html' %}
+
+{% block tabletitle %}
+    人员列表
+{% endblock %}
+
+
+
+{% block table_person %}
+    {#    {{ block.super }}用于获取父模板中block的内容#}
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>负责项目</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for person in persons %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ person.person_name }}</td>
+                <td>
+                    {% for person_project in person.person_project.all %}
+                        {% if forloop.last %}
+                            {{ person_project.project_name }}
+                        {% else %}
+                            {{ person_project.project_name }}，
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'person:person_del' %}?pk={{ person.pk }}" class="btn btn-danger btn-sm">删除</a>
+                    <a href="{% url 'person:person_edit' %}?pk={{ person.pk }}" class="btn btn-warning btn-sm">编辑</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+    </table>
+    <a href="{% url 'person:person_add' %}" class="btn btn-info">添加人员</a>
+
+
+{% endblock %}

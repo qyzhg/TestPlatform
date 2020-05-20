@@ -1,0 +1,31 @@
+{% extends 'person/person_base.html' %}
+
+{% block tabletitle %}
+    添加新人员
+{% endblock %}
+
+{% block table_person %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" class="form-control" id="name" name="person_name" placeholder="请输入姓名">
+        </div>
+        <div class="form-group">
+            <label for="poject">负责项目</label>
+            <p>
+                {% for project in projects %}
+                    <label class="form-group">
+                    <input type="checkbox" name="project" value={{ project.pk }}>{{ project.project_name }}
+                        &nbsp;
+                    </label>
+                {% endfor %}
+            </p>
+        </div>
+        <button type="submit" class="btn btn-info">提交</button>
+        &nbsp;&nbsp;&nbsp;
+        <a href="{% url 'person:index' %}" class="btn btn-warning">返回</a>
+    </form>
+
+{% endblock %}

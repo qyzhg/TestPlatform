@@ -1,0 +1,52 @@
+{% extends 'project/project_base.html' %}
+
+{% block tabletitle %}
+    项目列表
+{% endblock %}
+
+
+
+{% block table_project %}
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>项目名称</th>
+            <th>负责人</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+
+            {% for project in all_projects %}
+
+                <td>{{ forloop.counter }}</td>
+                <td>{{ project.project_name }}</td>
+
+                <td>
+                    {% for person in project.person_set.all %}
+                        {% if not person.person_is_del%}
+
+                        {% if forloop.last %}
+                            {{person.person_name}}
+                            {% else %}
+                            {{person.person_name}}，
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+
+                <td><a href="{% url 'project:project_del' %}?pk={{ project.pk }}">删除</a>
+                    <a href="{% url 'project:project_edit' %}?pk={{ project.pk }}">编辑</a>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <a href="{% url 'project:project_add' %}" class="btn btn-info">添加项目</a>
+
+{% endblock %}

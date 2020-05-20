@@ -1,0 +1,26 @@
+{% extends 'project/project_base.html' %}
+
+{% block tabletitle %}
+    添加新项目
+{% endblock %}
+
+{% block table_project %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">项目名称</label>
+            <input type="text" class="form-control" id="name" name="project_name" placeholder="请输入项目名称">
+        </div>
+        <div class="form-group">
+            <label for="poject">项目负责人</label>
+            <p>
+                {% for person in all_person %}
+                    <label class="form-group">
+                        <input name="persons" type="checkbox" value="{{ person.pk }}"/> {{ person.person_name }}
+                    </label>&nbsp;
+                {% endfor %}
+            </p>
+        </div>
+        <button type="submit" class="btn btn-info">提交</button>
+    </form>
+{% endblock %}

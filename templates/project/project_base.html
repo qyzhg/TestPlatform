@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    测试平台-项目管理
+{% endblock %}
+
+{% block body %}
+    {#    {{ block.super }}用于获取父模板中block的内容#}
+
+
+
+    <div class="panel panel-default" style="overflow:scroll">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {% block tabletitle %}
+                项目管理
+                {% endblock tabletitle %}
+            </h3>
+        </div>
+        <div class="panel-body">
+            {% block table_project %}
+
+            {% endblock table_project %}
+        </div>
+    </div>
+
+
+{% endblock %}
