@@ -21,11 +21,6 @@
     <div class="panel panel-info">
         <!-- Default panel contents -->
         <div class="panel-heading">回收站</div>
-        <div class="panel-body">
-            {#            <p>#}
-            {#                <a href="/lm_recycle/" class="btn btn-danger btn-sm">回收站</a>#}
-            {#            </p>#}
-        </div>
 
         <!-- Table -->
         <table class="table table-hover">
@@ -41,15 +36,14 @@
 
 
             </tr>
-            {% for foo in error %}
+            {% for error in del_error %}
                 <tr>
-                    <td>{{ foo.error }}</td>
-                    {% if foo.state %}
+                    <td>{{ error.error_name }}</td>
+                    {% if error.state %}
                         {#                            <td><span class="label label-success">已解决</span></td>#}
                         <td nowrap="nowrap">
                             <div class="btn btn-success btn-sm">已解决</div>
                         </td>
-
                     {% else %}
                         {#                            <td><span class="label label-danger">未解决</span></td>#}
                         <td nowrap="nowrap">
@@ -57,7 +51,7 @@
                         </td>
                     {% endif %}
                     <td nowrap="nowrap">
-                        {% if foo.isgrave %}
+                        {% if error.is_severity %}
                             <div class="btn btn-sm btn-warning">严重</div>
                         {% else %}
                             <div class="btn btn-sm btn-info">一般</div>
@@ -65,18 +59,18 @@
 
                     </td>
 
-                    <td nowrap="nowrap">{{ foo.last_user }}</td>
+                    <td nowrap="nowrap">{{ error.person.person_name }}</td>
                     {#                        <td>{{ foo.creattime }}</td>#}
                     <td>
 
 
-                        <a href="/lm_delete/?pk={{ foo.pk }}" class="btn btn-primary btn-sm">还原</a>
+                        <a href="{% url 'pro_inspection:pro_inspection_restore' %}?pk={{ error.pk }}" class="btn btn-primary btn-sm">还原</a>
                     </td>
                 </tr>
             {% endfor %}
         </table>
     </div>
-    <a href="/lm/" class="btn btn-warning">返回</a>
+    <a href="{% url 'pro_inspection:index' %}" class="btn btn-warning">返回</a>
 
 
 

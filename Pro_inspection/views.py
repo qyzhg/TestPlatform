@@ -62,6 +62,11 @@ def pro_inspection_add(request):
 
 
 def pro_inspection_del(request):
+    '''
+    删除问题
+    :param request:
+    :return:
+    '''
     error_pk = request.GET.get('pk')
     error = models.InspectionErrors.objects.filter(pk = error_pk).first()
     error.is_del = True
@@ -70,6 +75,11 @@ def pro_inspection_del(request):
 
 
 def pro_inspection_isgrave(request):
+    '''
+    移动问题
+    :param request:
+    :return:
+    '''
     error_pk = request.GET.get('pk')
     error = models.InspectionErrors.objects.filter(pk = error_pk).first()
     if error.is_severity:
@@ -79,3 +89,22 @@ def pro_inspection_isgrave(request):
         error.is_severity = True
         error.save()
     return redirect(reverse('pro_inspection:index'))
+
+
+def pro_inspection_recycle(request):
+    '''
+    回收站
+    :param request:
+    :return:
+    '''
+    if request.method == 'GET':
+        del_error = models.InspectionErrors.objects.filter(is_del=True)
+        return render(request,'pro_inspection/inspection_recycle.html',context=locals())
+
+
+def pro_inspection_restore(request):
+    error_pk = request.GET.get('pk')
+    error = models.InspectionErrors.objects.filter(pk=error_pk).first()
+    error.is_del = False
+    error.save()
+    return redirect(reverse('pro_inspection:pro_inspection_recycle'))

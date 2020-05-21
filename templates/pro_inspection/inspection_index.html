@@ -17,7 +17,6 @@
         <!-- Default panel contents -->
         <div class="panel-heading">严重问题记录</div>
 
-
         <!-- Table -->
         <table class="table table-hover">
 
@@ -59,11 +58,9 @@
 
     <!-- ----------------------------------------------------------- -->
 
-
     <div class="panel panel-warning">
         <!-- Default panel contents -->
         <div class="panel-heading">一般问题记录</div>
-
 
         <!-- Table -->
         <table class="table table-hover">
@@ -94,18 +91,13 @@
                             <a href="{% url 'pro_inspection:pro_inspection_del' %}?pk={{ inspection_error.pk }}"
                                class="btn btn-sm btn-warning">删除</a>
                                                 <a href="{% url 'pro_inspection:pro_inspection_isgrave' %}?pk={{ inspection_error.pk }}" class="btn btn-sm btn-danger">移至严重</a>
-
                         </td>
                     {% endif %}
                     </tr>
                 {% endfor %}
-
         </table>
     </div>
-
     <a href="{% url  'pro_inspection:pro_inspection_add' %}" class="btn btn-danger btn-sm">添加问题</a>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/lm_recycle/" class="btn btn-warning btn-sm">回收站</a>
-
-
+    <a href="{% url 'pro_inspection:pro_inspection_recycle' %}" class="btn btn-warning btn-sm">回收站</a>
 {% endblock %}
