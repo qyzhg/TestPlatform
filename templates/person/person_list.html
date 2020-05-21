@@ -38,7 +38,8 @@
                 </td>
                 <td>
                     <a href="{% url 'person:person_del' %}?pk={{ person.pk }}" class="btn btn-danger btn-sm">删除</a>
-                    <a href="{% url 'person:person_edit' %}?pk={{ person.pk }}" class="btn btn-warning btn-sm">编辑</a>
+                    &nbsp;&nbsp;
+                    <a href="{% url 'person:person_edit' %}?pk={{ person.pk }}" class="btn btn-info btn-sm">编辑</a>
                 </td>
             </tr>
         {% endfor %}

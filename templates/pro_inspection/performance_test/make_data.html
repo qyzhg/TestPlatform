@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    测试平台-视察管理-灌数工具
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">灌数工具</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <p>
+                    请选择需要灌数的模块：
+                    <select name="" id="">
+                        <option value="1">1</option>
+                    </select>
+                </p>
+                <p>
+                    请输入灌入数据量：
+                    <input type="number" name="data">
+                </p>
+
+                <p>
+                    请输入并发数：
+                    <input type="number" name="concurrence">
+                </p>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

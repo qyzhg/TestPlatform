@@ -24,4 +24,7 @@ urlpatterns = [
     path('pro_inspection_isgrave/', views.pro_inspection_isgrave, name='pro_inspection_isgrave'),
     path('pro_inspection_recycle/', views.pro_inspection_recycle, name='pro_inspection_recycle'),  # 回收站
     path('pro_inspection_restore/', views.pro_inspection_restore, name='pro_inspection_restore'),  # 还原
+    #性能测试模块路由
+    path('performance_test/', views.performance_test, name='performance_test'),  # 性能测试首页
+    path('make_data/', views.make_data, name='make_data'),  # 灌数
 ]

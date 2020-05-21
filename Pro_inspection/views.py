@@ -108,3 +108,11 @@ def pro_inspection_restore(request):
     error.is_del = False
     error.save()
     return redirect(reverse('pro_inspection:pro_inspection_recycle'))
+
+
+def performance_test(request):
+    return render(request,'pro_inspection/performance_test/performance_test.html')
+
+
+def make_data(request):
+    return render(request,'pro_inspection/performance_test/make_data.html')
