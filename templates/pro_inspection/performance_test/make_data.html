@@ -13,14 +13,34 @@
             <form class="form-horizontal" method="post">
                 {% csrf_token %}
                 <p>
+                    请输入目标服务器地址：
+                    <input type="text" name="server_ip" value="{{ ip }}">
+                </p>
+                <p>
+                    请输入目标服务器端口号（后台）:
+                    <input type="number" name="server_port" id="" value="{{ port }}">
+                </p>
+            <p>
+                被测系统用户名：
+                <input type="text" name="uname" value="{{ last_username }}">
+                被测系统密码：
+                <input type="password" name="pwd" value="{{ last_pwd }}">
+            </p>
+                <p>
                     请选择需要灌数的模块：
-                    <select name="" id="">
-                        <option value="1">1</option>
+                    <select name="mo_pk" id="">
+                        {% for tool_model in tool_models %}
+                            {% if last_models.pk == tool_model.pk %}
+                                <option value="{{ tool_model.pk }}" selected>{{ tool_model.name }}</option>
+                            {% else %}
+                            <option value="{{ tool_model.pk }}">{{ tool_model.name }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                 </p>
                 <p>
                     请输入灌入数据量：
-                    <input type="number" name="data">
+                    <input type="number" name="data_size">
                 </p>
 
                 <p>

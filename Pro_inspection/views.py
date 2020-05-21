@@ -103,6 +103,11 @@ def pro_inspection_recycle(request):
 
 
 def pro_inspection_restore(request):
+    '''
+    还原回收站
+    :param request:
+    :return:
+    '''
     error_pk = request.GET.get('pk')
     error = models.InspectionErrors.objects.filter(pk=error_pk).first()
     error.is_del = False
@@ -111,8 +116,43 @@ def pro_inspection_restore(request):
 
 
 def performance_test(request):
+    '''
+    性能测试入口（工具选择入口）
+    :param request:
+    :return:
+    '''
     return render(request,'pro_inspection/performance_test/performance_test.html')
 
 
 def make_data(request):
-    return render(request,'pro_inspection/performance_test/make_data.html')
+    '''
+    灌数
+    :param request:
+    :return:
+    '''
+    if request.method == 'GET':
+        ip = models.MakeData_cache.objects.all().order_by('-updata_time').first().ip
+        port = models.MakeData_cache.objects.all().order_by('-updata_time').first().port
+        tool_models = models.MakeData.objects.all()    #所有模块
+        last_models = models.MakeData_cache.objects.all().order_by('-updata_time').first().last_models #最后使用模块
+        last_username = models.MakeData_cache.objects.all().order_by('-updata_time').first().username
+        last_pwd = models.MakeData_cache.objects.all().order_by('-updata_time').first().password
+        return render(request,'pro_inspection/performance_test/make_data.html',context=locals())
+    elif request.method == 'POST':
+        ip = request.POST.get('server_ip')          #目标ip
+        port = request.POST.get('server_port')      #目标端口
+        model_pk = request.POST.get('mo_pk')        #选择的主键
+        data_size = request.POST.get('data_size')   #数据量
+        concurrence = request.POST.get('concurrence')#并发量
+        username = request.POST.get('uname')
+        pwd = request.POST.get('pwd')
+        #信息记录到缓存表
+        new_cache = models.MakeData_cache
+        new_cache.objects.create(
+                                ip=ip,
+                                port=port,
+                                username=username,
+                                password=pwd,
+                                last_models_id=model_pk
+                                )
+        return redirect(reverse('pro_inspection:make_data'))
