@@ -26,10 +26,13 @@
                 <td>{{ person.person_name }}</td>
                 <td>
                     {% for person_project in person.person_project.all %}
+                        {% if not person_project.project_is_del  %}
+
                         {% if forloop.last %}
                             {{ person_project.project_name }}
                         {% else %}
                             {{ person_project.project_name }}，
+                        {% endif %}
                         {% endif %}
                     {% endfor %}
                 </td>
