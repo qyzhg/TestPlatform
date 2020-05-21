@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    测试平台-许可证管理-回收站
+{% endblock %}
+
+{% block body %}
+    {#    {{ block.super }}用于获取父模板中block的内容#}
+
+    <a href="http://10.102.111.117:8092" class="btn btn-primary" target="_blank">许可证管理测试服务器地址>>></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn-primary" target="_blank">性能测试地址>>></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn-primary" target="_blank">接口测试地址>>></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <hr>
+
+    <!-- ----------------------------------------------------------- -->
+
+
+
+
+    <div class="panel panel-info">
+        <!-- Default panel contents -->
+        <div class="panel-heading">回收站</div>
+        <div class="panel-body">
+            {#            <p>#}
+            {#                <a href="/lm_recycle/" class="btn btn-danger btn-sm">回收站</a>#}
+            {#            </p>#}
+        </div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+
+            <tr>
+
+                <th nowrap="nowrap" style=text-align:center>问题详情</th>
+                <th nowrap="nowrap" style=text-align:center>状态</th>
+                <th nowrap="nowrap" style=text-align:center>严重程度</th>
+                <th nowrap="nowrap" style=text-align:center>操作人</th>
+                {#                <th>创建时间</th>#}
+                <th nowrap="nowrap" style=text-align:center>操作</th>
+
+
+            </tr>
+            {% for foo in error %}
+                <tr>
+                    <td>{{ foo.error }}</td>
+                    {% if foo.state %}
+                        {#                            <td><span class="label label-success">已解决</span></td>#}
+                        <td nowrap="nowrap">
+                            <div class="btn btn-success btn-sm">已解决</div>
+                        </td>
+
+                    {% else %}
+                        {#                            <td><span class="label label-danger">未解决</span></td>#}
+                        <td nowrap="nowrap">
+                            <div class="btn btn-danger btn-sm">未解决</div>
+                        </td>
+                    {% endif %}
+                    <td nowrap="nowrap">
+                        {% if foo.isgrave %}
+                            <div class="btn btn-sm btn-warning">严重</div>
+                        {% else %}
+                            <div class="btn btn-sm btn-info">一般</div>
+                        {% endif %}
+
+                    </td>
+
+                    <td nowrap="nowrap">{{ foo.last_user }}</td>
+                    {#                        <td>{{ foo.creattime }}</td>#}
+                    <td>
+
+
+                        <a href="/lm_delete/?pk={{ foo.pk }}" class="btn btn-primary btn-sm">还原</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/lm/" class="btn btn-warning">返回</a>
+
+
+
+{% endblock %}

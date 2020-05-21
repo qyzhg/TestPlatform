@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Index.apps.IndexConfig',       #首页
     'Person.apps.PersonConfig',     #人员管理
     'Project.apps.ProjectConfig',   #项目管理
+    'Pro_inspection.apps.ProInspectionConfig',   #视察
 ]
 
 MIDDLEWARE = [

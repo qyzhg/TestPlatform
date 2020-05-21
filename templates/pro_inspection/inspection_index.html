@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    测试平台-视察管理
+{% endblock %}
+
+{% block body %}
+    <a href="http://10.102.111.117:8092" class="btn btn-primary" target="_blank">许可证管理测试服务器地址>>></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn-primary" target="_blank">性能测试地址>>></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn btn-primary" target="_blank">接口测试地址>>></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <hr>
+
+    <!-- ----------------------------------------------------------- -->
+
+    <div class="panel panel-danger">
+        <!-- Default panel contents -->
+        <div class="panel-heading">严重问题记录</div>
+
+
+        <!-- Table -->
+        <table class="table table-hover">
+
+            <tr style=text-align:center>
+                <th nowrap="nowrap" style=text-align:left>编号</th>
+                <th nowrap="nowrap" style=text-align:center>问题详情</th>
+                <th nowrap="nowrap" style=text-align:center>状态</th>
+                <th nowrap="nowrap" style=text-align:center>操作人</th>
+                <th nowrap="nowrap" style=text-align:center>操作</th>
+
+            </tr>
+            {% for inspection_error in inspection_errors %}
+                {% if inspection_error.is_severity %}
+                    <td>{{ inspection_error.pk }}</td>
+                    <td>{{ inspection_error.error_name }}</td>
+                    <td>
+                        {% if inspection_error.state %}
+                            <a href="{% url 'pro_inspection:state' %}?pk={{ inspection_error.pk }}"
+                               class='btn btn-sm btn-danger'>未解决</a>
+                        {% else %}
+                            <a href="{% url 'pro_inspection:state' %}?pk={{ inspection_error.pk }}"
+                               class='btn btn-sm btn-success'>已解决</a>
+                        {% endif %}
+                    </td>
+                    <td>{{ inspection_error.person.person_name }}</td>
+                    <td>
+                        <a href="{% url 'pro_inspection:pro_inspection_del' %}?pk={{ inspection_error.pk }}"
+                           class="btn btn-sm btn-warning">删除</a>
+
+                        <a href="{% url 'pro_inspection:pro_inspection_isgrave' %}?pk={{ inspection_error.pk }}" class="btn btn-sm btn-success">移至一般</a>
+                    </td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    <!-- ----------------------------------------------------------- -->
+
+
+    <div class="panel panel-warning">
+        <!-- Default panel contents -->
+        <div class="panel-heading">一般问题记录</div>
+
+
+        <!-- Table -->
+        <table class="table table-hover">
+            <tr>
+                <th nowrap="nowrap" style=text-align:left>编号</th>
+                <th nowrap="nowrap" style=text-align:center>问题详情</th>
+                <th nowrap="nowrap" style=text-align:center>状态</th>
+                <th nowrap="nowrap" style=text-align:center>操作人</th>
+                <th nowrap="nowrap" style=text-align:center>操作</th>
+            </tr>
+
+            <tr>
+                {% for inspection_error in inspection_errors %}
+                    {% if not inspection_error.is_severity %}
+                        <td>{{ inspection_error.pk }}</td>
+                        <td>{{ inspection_error.error_name }}</td>
+                        <td>
+                            {% if inspection_error.state %}
+                                <a href="{% url 'pro_inspection:state' %}?pk={{ inspection_error.pk }}"
+                                   class='btn btn-sm btn-danger'>未解决</a>
+                            {% else %}
+                                <a href="{% url 'pro_inspection:state' %}?pk={{ inspection_error.pk }}"
+                                   class='btn btn-sm btn-success'>已解决</a>
+                            {% endif %}
+                        </td>
+                        <td>{{ inspection_error.person.person_name }}</td>
+                        <td>
+                            <a href="{% url 'pro_inspection:pro_inspection_del' %}?pk={{ inspection_error.pk }}"
+                               class="btn btn-sm btn-warning">删除</a>
+                                                <a href="{% url 'pro_inspection:pro_inspection_isgrave' %}?pk={{ inspection_error.pk }}" class="btn btn-sm btn-danger">移至严重</a>
+
+                        </td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+
+    <a href="{% url  'pro_inspection:pro_inspection_add' %}" class="btn btn-danger btn-sm">添加问题</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/lm_recycle/" class="btn btn-warning btn-sm">回收站</a>
+
+
+{% endblock %}
