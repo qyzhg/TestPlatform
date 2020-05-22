@@ -13,9 +13,15 @@ class InspectionErrors(models.Model):
     is_del = models.BooleanField(default=False) #逻辑删除
 
 class MakeData(models.Model):
+    '''
+    功能菜单
+    '''
     name = models.CharField(max_length=256) #模块名
 
 class MakeData_cache(models.Model):
+    '''
+    假缓存
+    '''
     ip = models.CharField(max_length=15)
     port = models.IntegerField(max_length=5)
     username = models.CharField(max_length=64)
